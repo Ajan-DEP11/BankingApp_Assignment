@@ -29,7 +29,7 @@ public class BankAppAssignment{
         System.out.println(CLEAR);
         System.out.println("\t" + APP_TITLE + "\n");
 
-        mainLoop:
+        //mainLoop:
         do{
 
         switch(screen){
@@ -55,6 +55,10 @@ public class BankAppAssignment{
                     //Account ID
                     
                     System.out.printf("\tNew Account ID: SDB-%05d \n", (customerIds.length + 1));
+                    for(int i = 0; i<customerIds.length; i++){
+                    id = String.format("SDB-%05d",(i+1));
+                    customerIds[i] = id;
+                }
 
                     //Name validation
                     do{
@@ -83,14 +87,35 @@ public class BankAppAssignment{
                         initial_dep = scanner.nextDouble();
                         scanner.nextLine();
                         if(initial_dep < 5000){
-                            System.out.printf(ERROR_MSG,"Insuficiant Initial Bank Balance");
+                            System.out.printf(ERROR_MSG,"Insuficiant Initial Bank Balance..Minimum Amount Should be Rs.5000.00");
                             valid = false;
                             break;
                         }
 
                     }while(!valid);
 
+                    String[] newCustomerIds = new String[customerIds.length + 1];
+                    String[] newCustomerNames = new String[customerNames.length + 1];
+                    for (int i = 0; i < customerIds.length; i++) {
+                        newCustomerIds[i] = customerIds[i];
+                        newCustomerNames[i] = customerNames[i];
+                    }
+                    newCustomerIds[newCustomerIds.length - 1] = id;
+                    newCustomerNames[newCustomerIds.length - 1] = name;
+                    customerIds = newCustomerIds;
+                    customerNames = newCustomerNames;
+
+                    System.out.println();
+                    System.out.printf(SUCCESS_MSG, 
+                    String.format("%s:%s has been saved successfully", id, name));
+                    System.out.print("\tDo you want to continue adding (Y/n)? ");
+                    if (scanner.nextLine().strip().toUpperCase().equals("Y")) continue;
+                    screen = DASHBOARD;
+                    break;
+
                 }while(true);
-        
+            }while(true);
+        }
     }
-}
+        
+    
