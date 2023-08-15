@@ -29,6 +29,9 @@ public class BankAppAssignment{
         System.out.println(CLEAR);
         System.out.println("\t" + APP_TITLE + "\n");
 
+        mainLoop:
+        do{
+
         switch(screen){
             case DASHBOARD: 
                 System.out.println("\t[1]. Open New Account");
@@ -47,28 +50,47 @@ public class BankAppAssignment{
                     String id;
                     String name;
                     boolean valid;
+                    double initial_dep;
+
+                    //Account ID
                     
                     System.out.printf("\tNew Account ID: SDB-%05d \n", (customerIds.length + 1));
 
-        
+                    //Name validation
                     do{
                         valid = true;
                         System.out.print("\tEnter Customer's Name: ");
                         name = scanner.nextLine().strip();
                         if (name.isBlank()){
-                            System.out.printf("\t%sName can't be Empty%s\n", COLOR_RED_BOLD, RESET);
+                            System.out.printf(ERROR_MSG,"Name can't be Empty");
                             valid = false;
                             continue;
                         }
                         for (int i = 0; i < name.length(); i++) {
                             if (!(Character.isLetter(name.charAt(i)) || 
                                 Character.isSpaceChar(name.charAt(i))) ) {
-                                System.out.printf("\t%sInvalid Name%s\n", COLOR_RED_BOLD, RESET);
+                                System.out.printf(ERROR_MSG,"Invalid Name");
                                 valid = false;
                                 break;
                             }
                         }
                     }while(!valid);
+
+                    //Initial deposit
+                    do{
+                        valid = true;
+                        System.out.println("\tEnter the Initial Deposit: Rs.");
+                        initial_dep = scanner.nextDouble();
+                        scanner.nextLine();
+                        if(initial_dep < 5000){
+                            System.out.printf(ERROR_MSG,"Insuficiant Initial Bank Balance");
+                            valid = false;
+                            break;
+                        }
+
+                    }while(!valid);
+
+                }while(true);
         
     }
 }
