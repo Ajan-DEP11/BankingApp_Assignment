@@ -21,6 +21,21 @@ public class BankAppAssignment{
         String[] customerNames = new String[0];
 
         String screen = DASHBOARD;
+
+        switch(screen){
+            case DASHBOARD: 
+                System.out.println("\t[1]. Open New Account");
+                System.out.println("\t[2]. Exit\n");
+                System.out.print("\tEnter an option to continue: ");
+                int option = scanner.nextInt();
+                scanner.nextLine();
+
+                switch (option){
+                    case 1: screen = NEW_ACCOUNT; break;
+                    case 2: System.out.println(CLEAR); System.exit(0);
+                    default: continue;
+                }
+                break;
         
     }
 }
