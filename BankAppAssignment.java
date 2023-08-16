@@ -27,15 +27,18 @@ public class BankAppAssignment{
         COLOR_BLUE_BOLD, screen, RESET);
 
         System.out.println(CLEAR);
-        System.out.println("\t" + APP_TITLE + "\n");
+        System.out.println("-".repeat(45));
+        System.out.println("\t" + APP_TITLE );
+        System.out.println("-".repeat(45));
 
-        //mainLoop:
+        mainLoop:
         do{
 
         switch(screen){
             case DASHBOARD: 
                 System.out.println("\t[1]. Open New Account");
                 System.out.println("\t[2]. Exit\n");
+                System.out.println("-".repeat(45));
                 System.out.print("\tEnter an option to continue: ");
                 int option = scanner.nextInt();
                 scanner.nextLine();
@@ -47,7 +50,7 @@ public class BankAppAssignment{
                 }
                 break;
                 case NEW_ACCOUNT:
-                    String id;
+                    String id="";
                     String name;
                     boolean valid;
                     double initial_dep;
@@ -55,10 +58,10 @@ public class BankAppAssignment{
                     //Account ID
                     
                     System.out.printf("\tNew Account ID: SDB-%05d \n", (customerIds.length + 1));
-                    for(int i = 0; i<customerIds.length; i++){
-                    id = String.format("SDB-%05d",(i+1));
-                    customerIds[i] = id;
-                }
+                    //for(int i = 0; i<customerIds.length; i++){
+                   // id = String.format("SDB-%05d",(i+1));
+                    //customerIds[i] = id;
+                
 
                     //Name validation
                     do{
@@ -83,7 +86,7 @@ public class BankAppAssignment{
                     //Initial deposit
                     do{
                         valid = true;
-                        System.out.println("\tEnter the Initial Deposit: Rs.");
+                        System.out.print("\tEnter the Initial Deposit: Rs.");
                         initial_dep = scanner.nextDouble();
                         scanner.nextLine();
                         if(initial_dep < 5000){
@@ -97,6 +100,7 @@ public class BankAppAssignment{
                     String[] newCustomerIds = new String[customerIds.length + 1];
                     String[] newCustomerNames = new String[customerNames.length + 1];
                     for (int i = 0; i < customerIds.length; i++) {
+                        id = String.format("SDB-%05d",(i+1));
                         newCustomerIds[i] = customerIds[i];
                         newCustomerNames[i] = customerNames[i];
                     }
@@ -113,7 +117,7 @@ public class BankAppAssignment{
                     screen = DASHBOARD;
                     break;
 
-                }while(true);
+                }
             }while(true);
         }
     }
